@@ -6,8 +6,8 @@ int main()
 {
     try
     {
-        Matrix<int> A(PROJECT_ROOT "/input/A.txt");
-        Matrix<int> B(PROJECT_ROOT "/input/B.txt");
+        Matrix<int> A(PROJECT_ROOT "/input/A.csv");
+        Matrix<int> B(PROJECT_ROOT "/input/B.csv");
 
         auto start = std::chrono::high_resolution_clock::now();
         Matrix<int> C = A * B;

@@ -6,20 +6,22 @@ int main()
 {
     try
     {
-        Matrix<int> A(PROJECT_ROOT "/input/A.csv");
-        Matrix<int> B(PROJECT_ROOT "/input/B.csv");
+        Matrix<double> A(PROJECT_ROOT "/input/A.txt");
+        Matrix<double> B(PROJECT_ROOT "/input/B.txt");
 
         auto start = std::chrono::high_resolution_clock::now();
-        Matrix<int> C = A * B;
+        Matrix<double> C = A * B;
         auto end = std::chrono::high_resolution_clock::now();
-        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start);
+        auto duration = std::chrono::duration<double>(end - start);
 
         std::string outpath = PROJECT_ROOT "/output/C.txt";
         std::ofstream file(outpath);
-        if (!file.is_open()) throw std::runtime_error("Could not open output file!");
+        if (!file.is_open())
+            throw std::runtime_error("Could not open output file!");
         file << C.rows() << " " << C.cols() << "\n";
         file << C << "\n";
-        file << "Time: " << duration.count() << " microseconds\n\n";
+        file << "Time: " << duration.count() << " seconds\n\n";
+        file << "Task size: " << C.rows() << "x" << C.cols() << "\n";
     }
     catch (const std::exception &e)
     {

@@ -21,19 +21,13 @@ public:
     {
         std::ifstream file(filename);
         if (!file.is_open())
-        {
             throw std::runtime_error("Could not open file: " + filename);
-        }
 
         size_t rows = 0, cols = 0;
         if (!(file >> rows >> cols))
-        {
             throw std::runtime_error("Invalid matrix dimensions in file!");
-        }
         if (rows == 0 || cols == 0)
-        {
             throw std::runtime_error("Matrix dimensions must be positive!");
-        }
 
         _rows = rows;
         _cols = cols;
@@ -44,33 +38,21 @@ public:
             for (size_t j = 0; j < cols; ++j)
             {
                 if (!(file >> _data[i * cols + j]))
-                {
                     throw std::runtime_error("Invalid matrix data in file!");
-                }
             }
-        }
-
-        char leftover;
-        if (file >> leftover)
-        {
-            throw std::runtime_error("File contains extra data beyond the matrix!");
         }
     }
 
     T &operator()(size_t row, size_t col)
     {
         if (row >= _rows || col >= _cols)
-        {
             throw std::out_of_range("Matrix index out of range");
-        }
         return _data[row * _cols + col];
     }
     const T &operator()(size_t row, size_t col) const
     {
         if (row >= _rows || col >= _cols)
-        {
             throw std::out_of_range("Matrix index out of range");
-        }
         return _data[row * _cols + col];
     }
 
@@ -88,9 +70,7 @@ template <typename T>
 Matrix<T> operator*(const Matrix<T> &lhs, const Matrix<T> &rhs)
 {
     if (lhs.cols() != rhs.rows())
-    {
         throw std::invalid_argument("Matrix dimensions do not match for multiplication");
-    }
 
     Matrix<T> result(lhs.rows(), rhs.cols());
     for (size_t i = 0; i < lhs.rows(); ++i)
@@ -99,9 +79,7 @@ Matrix<T> operator*(const Matrix<T> &lhs, const Matrix<T> &rhs)
         {
             T sum = T();
             for (size_t k = 0; k < lhs.cols(); ++k)
-            {
                 sum += lhs(i, k) * rhs(k, j);
-            }
             result(i, j) = sum;
         }
     }
@@ -114,9 +92,7 @@ std::ostream &operator<<(std::ostream &os, const Matrix<T> &matrix)
     for (size_t i = 0; i < matrix.rows(); ++i)
     {
         for (size_t j = 0; j < matrix.cols(); ++j)
-        {
             os << matrix(i, j) << " ";
-        }
         os << "\n";
     }
     return os;

@@ -12,8 +12,9 @@
 Классический алгоритм (а именно он и использовался) работает довольно долго на больших размерах. Результат проверен скриптом-верификатором: вычисления производятся правильно.
 
 ### Характеристики моего ПК
-| Processor | AMD Ryzen 3 2200G with Radeon Vega Graphics 3.50 GHz |
+| Characteristic | Characteristic value |
 | --- | --- |
+| Processor | AMD Ryzen 3 2200G with Radeon Vega Graphics 3.50 GHz |
 | Installed RAM | 16,0 GB |
 | System type | 64-bit operating system, x64-based processor |
 | Graphic card | NVIDIA GeForce GTX 1660 6 GB |
